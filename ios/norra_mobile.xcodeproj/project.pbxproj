@@ -16,6 +16,16 @@
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* norra_mobileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* norra_mobileTests.m */; };
+		4024196B5B96F5DE20B2EC35 /* libPods-norra_mobileTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B26CC5395E24C808DC8C3816 /* libPods-norra_mobileTests.a */; };
+		7AFFF44013949170A2B08DC8 /* libPods-norra_mobile-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B10FAD6BCECD130E938BB2DA /* libPods-norra_mobile-tvOS.a */; };
+		80AC2850387995E495F6624B /* libPods-norra_mobile-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 347F0C3A8B91DEF5909B556C /* libPods-norra_mobile-tvOSTests.a */; };
+		A2904B14242A15F100FCDDEE /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2904B0F242A12F500FCDDEE /* FBSDKShareKit.framework */; };
+		A2904B15242A15F100FCDDEE /* FBSDKShareKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A2904B0F242A12F500FCDDEE /* FBSDKShareKit.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A2904B17242A15F300FCDDEE /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2904B0E242A12F400FCDDEE /* FBSDKLoginKit.framework */; };
+		A2904B18242A15F300FCDDEE /* FBSDKLoginKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A2904B0E242A12F400FCDDEE /* FBSDKLoginKit.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A2904B19242A15F400FCDDEE /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2904B10242A12F700FCDDEE /* FBSDKCoreKit.framework */; };
+		A2904B1A242A15F400FCDDEE /* FBSDKCoreKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A2904B10242A12F700FCDDEE /* FBSDKCoreKit.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		E1E722E3FEBD4C51D9DE8BEF /* libPods-norra_mobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D81811C5ECFF37A31BB8CC30 /* libPods-norra_mobile.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +45,22 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		A2904B16242A15F100FCDDEE /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				A2904B18242A15F300FCDDEE /* FBSDKLoginKit.framework in Embed Frameworks */,
+				A2904B1A242A15F400FCDDEE /* FBSDKCoreKit.framework in Embed Frameworks */,
+				A2904B15242A15F100FCDDEE /* FBSDKShareKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		00E356EE1AD99517003FC87E /* norra_mobileTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = norra_mobileTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -49,6 +75,21 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = norra_mobile/main.m; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* norra_mobile-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "norra_mobile-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* norra_mobile-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "norra_mobile-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		347F0C3A8B91DEF5909B556C /* libPods-norra_mobile-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-norra_mobile-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4151FDD19D92B3B53003F4DE /* Pods-norra_mobileTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-norra_mobileTests.debug.xcconfig"; path = "Target Support Files/Pods-norra_mobileTests/Pods-norra_mobileTests.debug.xcconfig"; sourceTree = "<group>"; };
+		8426801AB0358A5107968BC7 /* Pods-norra_mobileTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-norra_mobileTests.release.xcconfig"; path = "Target Support Files/Pods-norra_mobileTests/Pods-norra_mobileTests.release.xcconfig"; sourceTree = "<group>"; };
+		8ECF5BFE8BC0461678FB6AC1 /* Pods-norra_mobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-norra_mobile.release.xcconfig"; path = "Target Support Files/Pods-norra_mobile/Pods-norra_mobile.release.xcconfig"; sourceTree = "<group>"; };
+		A2904B0E242A12F400FCDDEE /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		A2904B0F242A12F500FCDDEE /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		A2904B10242A12F700FCDDEE /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		A913D7DB54F4FBCD68B9CC62 /* Pods-norra_mobile-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-norra_mobile-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-norra_mobile-tvOS/Pods-norra_mobile-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		AF973B3471CD92B6EB8E8CC5 /* Pods-norra_mobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-norra_mobile.debug.xcconfig"; path = "Target Support Files/Pods-norra_mobile/Pods-norra_mobile.debug.xcconfig"; sourceTree = "<group>"; };
+		B10FAD6BCECD130E938BB2DA /* libPods-norra_mobile-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-norra_mobile-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B26CC5395E24C808DC8C3816 /* libPods-norra_mobileTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-norra_mobileTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE2599C00A43492EED985CA2 /* Pods-norra_mobile-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-norra_mobile-tvOS.release.xcconfig"; path = "Target Support Files/Pods-norra_mobile-tvOS/Pods-norra_mobile-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		CEA0EB157C69D59055DC4763 /* Pods-norra_mobile-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-norra_mobile-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-norra_mobile-tvOSTests/Pods-norra_mobile-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D81811C5ECFF37A31BB8CC30 /* libPods-norra_mobile.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-norra_mobile.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DCE3B5FCFF9B0E034AE10F29 /* Pods-norra_mobile-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-norra_mobile-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-norra_mobile-tvOSTests/Pods-norra_mobile-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
@@ -58,6 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4024196B5B96F5DE20B2EC35 /* libPods-norra_mobileTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +107,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2904B14242A15F100FCDDEE /* FBSDKShareKit.framework in Frameworks */,
+				A2904B19242A15F400FCDDEE /* FBSDKCoreKit.framework in Frameworks */,
+				A2904B17242A15F300FCDDEE /* FBSDKLoginKit.framework in Frameworks */,
+				E1E722E3FEBD4C51D9DE8BEF /* libPods-norra_mobile.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +118,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7AFFF44013949170A2B08DC8 /* libPods-norra_mobile-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +126,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80AC2850387995E495F6624B /* libPods-norra_mobile-tvOSTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,8 +167,15 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A2904B10242A12F700FCDDEE /* FBSDKCoreKit.framework */,
+				A2904B0E242A12F400FCDDEE /* FBSDKLoginKit.framework */,
+				A2904B0F242A12F500FCDDEE /* FBSDKShareKit.framework */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
+				D81811C5ECFF37A31BB8CC30 /* libPods-norra_mobile.a */,
+				B10FAD6BCECD130E938BB2DA /* libPods-norra_mobile-tvOS.a */,
+				347F0C3A8B91DEF5909B556C /* libPods-norra_mobile-tvOSTests.a */,
+				B26CC5395E24C808DC8C3816 /* libPods-norra_mobileTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -140,6 +195,7 @@
 				00E356EF1AD99517003FC87E /* norra_mobileTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
+				C64FC3DEC0157BAD093554AD /* Pods */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -157,6 +213,21 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		C64FC3DEC0157BAD093554AD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AF973B3471CD92B6EB8E8CC5 /* Pods-norra_mobile.debug.xcconfig */,
+				8ECF5BFE8BC0461678FB6AC1 /* Pods-norra_mobile.release.xcconfig */,
+				A913D7DB54F4FBCD68B9CC62 /* Pods-norra_mobile-tvOS.debug.xcconfig */,
+				CE2599C00A43492EED985CA2 /* Pods-norra_mobile-tvOS.release.xcconfig */,
+				CEA0EB157C69D59055DC4763 /* Pods-norra_mobile-tvOSTests.debug.xcconfig */,
+				DCE3B5FCFF9B0E034AE10F29 /* Pods-norra_mobile-tvOSTests.release.xcconfig */,
+				4151FDD19D92B3B53003F4DE /* Pods-norra_mobileTests.debug.xcconfig */,
+				8426801AB0358A5107968BC7 /* Pods-norra_mobileTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -164,6 +235,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "norra_mobileTests" */;
 			buildPhases = (
+				C85B4183C4F111BAB157DCB0 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
@@ -182,18 +254,21 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "norra_mobile" */;
 			buildPhases = (
+				8C4F0BB181D70B1143E5587D /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
+				2BEAEE3F5104E7ED06B951CB /* [CP] Copy Pods Resources */,
+				A2904B16242A15F100FCDDEE /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = norra_mobile;
-			productName = "norra_mobile";
+			productName = norra_mobile;
 			productReference = 13B07F961A680F5B00A75B9A /* norra_mobile.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -201,6 +276,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "norra_mobile-tvOS" */;
 			buildPhases = (
+				0866349CF8763F065AD491D0 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F122414F3F0027D42C /* Start Packager */,
 				2D02E4771E0B4A5D006451C7 /* Sources */,
 				2D02E4781E0B4A5D006451C7 /* Frameworks */,
@@ -220,6 +296,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "norra_mobile-tvOSTests" */;
 			buildPhases = (
+				9DD190D4D8E28B84DF5166AE /* [CP] Check Pods Manifest.lock */,
 				2D02E48C1E0B4A5D006451C7 /* Sources */,
 				2D02E48D1E0B4A5D006451C7 /* Frameworks */,
 				2D02E48E1E0B4A5D006451C7 /* Resources */,
@@ -263,6 +340,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -328,6 +406,48 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
+		0866349CF8763F065AD491D0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-norra_mobile-tvOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2BEAEE3F5104E7ED06B951CB /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-norra_mobile/Pods-norra_mobile-resources.sh",
+				"${PODS_ROOT}/FBSDKCoreKit/FacebookSDKStrings.bundle",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FacebookSDKStrings.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-norra_mobile/Pods-norra_mobile-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -341,6 +461,72 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+		};
+		8C4F0BB181D70B1143E5587D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-norra_mobile-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9DD190D4D8E28B84DF5166AE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-norra_mobile-tvOSTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C85B4183C4F111BAB157DCB0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-norra_mobileTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -447,6 +633,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4151FDD19D92B3B53003F4DE /* Pods-norra_mobileTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -469,6 +656,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8426801AB0358A5107968BC7 /* Pods-norra_mobileTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -488,10 +676,15 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AF973B3471CD92B6EB8E8CC5 /* Pods-norra_mobile.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = norra_mobile/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -507,9 +700,14 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8ECF5BFE8BC0461678FB6AC1 /* Pods-norra_mobile.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = norra_mobile/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -525,6 +723,7 @@
 		};
 		2D02E4971E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A913D7DB54F4FBCD68B9CC62 /* Pods-norra_mobile-tvOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -552,6 +751,7 @@
 		};
 		2D02E4981E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CE2599C00A43492EED985CA2 /* Pods-norra_mobile-tvOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -579,6 +779,7 @@
 		};
 		2D02E4991E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CEA0EB157C69D59055DC4763 /* Pods-norra_mobile-tvOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -605,6 +806,7 @@
 		};
 		2D02E49A1E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DCE3B5FCFF9B0E034AE10F29 /* Pods-norra_mobile-tvOSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
