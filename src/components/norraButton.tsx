@@ -19,8 +19,8 @@ const buttonStyles = StyleSheet.create({
   },
   longDefaultText: {
     fontFamily: 'Roboto',
-    fontSize: 14,
-    fontWeight: '500',
+    fontSize: 15,
+    fontWeight: 'bold',
     letterSpacing: 1,
     // flex: 1,
     textAlign: 'center',

@@ -13,7 +13,7 @@ import WhiteCheck from '@assets/White_selected.svg';
 interface IBoxImageProps extends IExtraStyles {
   uri: string;
   enableTick: boolean;
-  onPress: () => void;
+  onPress: (item: string) => void;
   enableOverlay: boolean;
   title: string;
 }
@@ -23,7 +23,7 @@ const boxImageStyles = StyleSheet.create({
     height: 140,
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 25,
+    borderRadius: 5,
   },
   tickMarck: {
     height: 40,
@@ -31,8 +31,8 @@ const boxImageStyles = StyleSheet.create({
   },
   overlay: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(0,0,0,0.4)',
-    borderRadius: 25,
+    backgroundColor: 'rgba(0,0,0,0.3)',
+    borderRadius: 5,
   },
   title: {
     color: 'white',
@@ -40,6 +40,7 @@ const boxImageStyles = StyleSheet.create({
     fontSize: 16,
     position: 'absolute',
     bottom: 8,
+    fontWeight: 'bold',
   },
 });
 
@@ -54,7 +55,7 @@ export const BoxImage = ({
 }: IBoxImageProps) => {
   return (
     <TouchableOpacity
-      onPress={onPress ? onPress : () => {}}
+      onPress={onPress ? () => onPress(title) : () => {}}
       activeOpacity={0.8}>
       <ImageBackground
         source={{uri}}
@@ -63,14 +64,14 @@ export const BoxImage = ({
         {enableOverlay && (
           <View style={[boxImageStyles.overlay, ...secondaryStyles]} />
         )}
-         {enableTick && (
+        {enableTick && (
           // <Image
           //   source={{uri: 'https://i.ibb.co/Nngrdb4/pngwave.png'}}
           //   style={[boxImageStyles.tickMarck]}
           // />
           <WhiteCheck {...boxImageStyles.tickMarck} />
         )}
-        {title && <Text style={boxImageStyles.title}>{title}</Text>}
+        {title ? <Text style={boxImageStyles.title}>{title}</Text> : null}
       </ImageBackground>
     </TouchableOpacity>
   );

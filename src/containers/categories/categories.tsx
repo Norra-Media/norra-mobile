@@ -3,8 +3,31 @@ import {Text, View, StyleSheet} from 'react-native';
 import {Header, BackButton, NorraButton, BoxImage} from '@components';
 import {PRIMARY_NAVY_BLUE, CategoryPageMsg} from '@modules';
 
-export class Categories extends Component {
+interface ICategState {
+  options: Array<string>;
+  selectedOpt: Array<string>;
+}
+
+export class Categories extends Component<any, ICategState> {
+  state = {
+    options: ['Sports', 'Hygiene', 'Healthy Diet'],
+    selectedOpt: [''],
+  };
+
+  optionClickHandler = (item: string) => {
+    const {selectedOpt} = this.state;
+    let newSelectedOpt = selectedOpt;
+    let isPreset = selectedOpt.indexOf(item);
+    if (isPreset === -1) {
+      newSelectedOpt.push(item);
+    } else {
+      newSelectedOpt = selectedOpt.filter(e => e !== item);
+    }
+    this.setState({selectedOpt: newSelectedOpt});
+  };
+
   render() {
+    const {options, selectedOpt} = this.state;
     return (
       <View style={categoriesStyle.container}>
         <Header styles={[categoriesStyle.headerStyle]}>
@@ -25,54 +48,16 @@ export class Categories extends Component {
             {CategoryPageMsg.subTitle}
           </Text>
           <View style={categoriesStyle.cardsWrapper}>
-            <BoxImage
-              enableOverlay={true}
-              enableTick={false}
-              onPress={() => {}}
-              title={'Sports'}
-              uri={'https://i.ibb.co/p2MZYrh/starry-night-1149815-1920.jpg'}
-              styles={[categoriesStyle.card]}
-            />
-            <BoxImage
-              enableOverlay={true}
-              enableTick={true}
-              onPress={() => {}}
-              title={'Sports'}
-              uri={'https://i.ibb.co/p2MZYrh/starry-night-1149815-1920.jpg'}
-              styles={[categoriesStyle.card]}
-            />
-            <BoxImage
-              enableOverlay={true}
-              enableTick={true}
-              onPress={() => {}}
-              title={'Sports'}
-              uri={'https://i.ibb.co/p2MZYrh/starry-night-1149815-1920.jpg'}
-              styles={[categoriesStyle.card]}
-            />
-            <BoxImage
-              enableOverlay={true}
-              enableTick={true}
-              onPress={() => {}}
-              title={'Sports'}
-              uri={'https://i.ibb.co/p2MZYrh/starry-night-1149815-1920.jpg'}
-              styles={[categoriesStyle.card]}
-            />
-            <BoxImage
-              enableOverlay={true}
-              enableTick={true}
-              onPress={() => {}}
-              title={'Sports'}
-              uri={'https://i.ibb.co/p2MZYrh/starry-night-1149815-1920.jpg'}
-              styles={[categoriesStyle.card]}
-            />
-            <BoxImage
-              enableOverlay={true}
-              enableTick={true}
-              onPress={() => {}}
-              title={'Sports'}
-              uri={'https://i.ibb.co/p2MZYrh/starry-night-1149815-1920.jpg'}
-              styles={[categoriesStyle.card]}
-            />
+            {options.map(ele => (
+              <BoxImage
+                enableOverlay={true}
+                enableTick={selectedOpt.includes(ele)}
+                onPress={this.optionClickHandler}
+                title={ele}
+                uri={'https://i.ibb.co/p2MZYrh/starry-night-1149815-1920.jpg'}
+                styles={[categoriesStyle.card]}
+              />
+            ))}
           </View>
         </View>
       </View>
