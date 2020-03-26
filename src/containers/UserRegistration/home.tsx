@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {
   View,
-  Image,
   SafeAreaView,
   StyleSheet,
   TouchableOpacity,
@@ -12,6 +11,10 @@ import {
 import KeyboardShift from '../../components/keyboardShift';
 import {AccessToken, LoginManager} from 'react-native-fbsdk';
 import {GoogleSignin, statusCodes} from 'react-native-google-signin';
+import FacebookLogo from '../../../assets/facebook_logo.svg';
+import GoogleLogo from '../../../assets/google_logo.svg';
+import NorraLogo from '../../../assets/norra_logo.svg';
+import SignupNetworkWeb from '../../../assets/signup_network_web.svg';
 
 export default class Home extends Component {
   state = {
@@ -112,23 +115,14 @@ export default class Home extends Component {
       <SafeAreaView style={Styles.container}>
         <KeyboardShift>
           <ScrollView bounces={false} showsVerticalScrollIndicator={false}>
-            <Image
-              source={require('../../../assets/norra_landing_page_background.png')}
-              style={Styles.backgroundImage}
-            />
+            <SignupNetworkWeb style={Styles.backgroundImage} />
             <View style={Styles.childContainer}>
               <View style={Styles.innerContainer}>
-                <Image
-                  source={require('../../../assets/norra_logo.png')}
-                  style={Styles.logo}
-                />
+                <NorraLogo style={Styles.logo} />
                 <TouchableOpacity
                   style={[Styles.button, Styles.blueButton]}
                   onPress={this.loginUsingFacebook}>
-                  <Image
-                    source={require('../../../assets/facebook_logo.png')}
-                    style={Styles.signUpLogo}
-                  />
+                  <FacebookLogo style={Styles.signUpLogo} />
                   <Text style={[Styles.buttonText, Styles.blueText]}>
                     Continue with Facebook
                   </Text>
@@ -136,10 +130,7 @@ export default class Home extends Component {
                 <TouchableOpacity
                   style={[Styles.button, Styles.blueButton]}
                   onPress={this.loginUsingGoogle}>
-                  <Image
-                    source={require('../../../assets/google_logo.png')}
-                    style={Styles.signUpLogo}
-                  />
+                  <GoogleLogo style={Styles.signUpLogo} />
                   <Text style={[Styles.buttonText, Styles.blueText]}>
                     Continue with Google
                   </Text>
@@ -205,6 +196,8 @@ const Styles = StyleSheet.create({
   logo: {
     marginTop: -60,
     marginBottom: 20,
+    width: 165,
+    height: 48,
   },
   childContainer: {
     flexDirection: 'column',

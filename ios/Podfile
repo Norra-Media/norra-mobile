@@ -38,6 +38,12 @@ target 'norra_mobile' do
 
   pod 'RNGoogleSignin', :path => '../node_modules/react-native-google-signin'
 
+  pod 'RNSVG', :path => '../node_modules/react-native-svg'
+
+  pod 'RNDateTimePicker', :path => '../node_modules/@react-native-community/datetimepicker/'
+
+  pod 'RNImageCropPicker', :path => '../node_modules/react-native-image-crop-picker'
+
   target 'norra_mobileTests' do
     inherit! :search_paths
     # Pods for testing
