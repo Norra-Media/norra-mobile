@@ -18,11 +18,14 @@ import {GOOGLE_SIGNIN_CONFIGURATIONS, LOGINTYPES} from '@modules/constants';
 import {facebookGraphUrl} from '@modules/urls';
 import KeyboardShift from '@components/keyboardShift';
 import {COLORS} from '@modules/colors';
+import {GlobalStyles} from '@modules/globalStyles';
+import {validateEmail} from '@modules/services';
 
 export default class Home extends Component {
   state = {
     email: '',
     user: null,
+    emailNotFound: false,
   };
 
   loginUsingGoogle = async () => {
@@ -101,14 +104,19 @@ export default class Home extends Component {
       });
   }
 
+  emailLogin = () => {
+    const {email} = this.state;
+    if (email && validateEmail(email)) {
+    } else {
+      this.setState({emailNotFound: true});
+    }
+  };
+
   render() {
     return (
-      <SafeAreaView style={Styles.container}>
+      <SafeAreaView style={GlobalStyles.container}>
         <KeyboardShift>
-          <ScrollView
-            bounces={false}
-            showsVerticalScrollIndicator={false}
-            style={{flex: 1}}>
+          <ScrollView bounces={false} showsVerticalScrollIndicator={false}>
             <SignupNetworkWeb style={Styles.backgroundImage} />
             <View style={Styles.childContainer}>
               <View style={Styles.innerContainer}>
@@ -138,8 +146,10 @@ export default class Home extends Component {
                 <TextInput
                   style={[
                     Styles.button,
-                    Styles.blueButton,
                     Styles.blueInputField,
+                    this.state.emailNotFound
+                      ? Styles.warningButton
+                      : Styles.blueButton,
                   ]}
                   placeholder={'Enter your email address'}
                   keyboardType={'email-address'}
@@ -149,15 +159,19 @@ export default class Home extends Component {
                   autoCompleteType={'email'}
                   autoCapitalize={'none'}
                   value={this.state.email}
-                  onChangeText={email => this.setState({email})}
+                  onChangeText={email =>
+                    this.setState({email, emailNotFound: false})
+                  }
                 />
-                <TouchableOpacity style={[Styles.button, Styles.submitButton]}>
+                <TouchableOpacity
+                  style={[Styles.button, Styles.submitButton]}
+                  onPress={this.emailLogin}>
                   <Text style={Styles.submitButtonText}>Continue</Text>
                 </TouchableOpacity>
               </View>
             </View>
           </ScrollView>
-          <View style={{alignSelf: 'center'}}>
+          <View style={GlobalStyles.alignSelfCentre}>
             <TouchableOpacity style={Styles.termsConditions}>
               <Text style={[Styles.buttonText, Styles.blueText]}>
                 Terms and conditions
@@ -204,6 +218,10 @@ const Styles = StyleSheet.create({
   },
   blueButton: {
     borderColor: COLORS.PRIMARY,
+    borderWidth: 1,
+  },
+  warningButton: {
+    borderColor: COLORS.WARNING_RED,
     borderWidth: 1,
   },
   buttonText: {

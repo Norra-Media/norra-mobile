@@ -6,15 +6,20 @@ import {
   TextStyle,
   StyleProp,
   StyleSheet,
+  TextInputProps,
 } from 'react-native';
 import {COLORS} from '@modules/colors';
 
-interface IFloatingLabelInputProps {
+interface IFloatingLabelInputProps extends TextInputProps {
   label: string;
   value: string;
   onChangeText: (text: string) => void;
   mandatory?: boolean;
   hint?: string;
+  error?: boolean;
+  warningMessage?: string;
+  maxLength?: number;
+  showCharacterCount?: boolean;
 }
 interface IFloatingLabelInputState {
   isFocused: boolean;
@@ -31,7 +36,17 @@ export default class FloatingLabelInput extends React.Component<
   handleBlur = () => this.setState({isFocused: false});
 
   render() {
-    const {label, value, mandatory, hint, ...props} = this.props;
+    const {
+      label,
+      value,
+      mandatory,
+      hint,
+      error,
+      warningMessage,
+      maxLength,
+      showCharacterCount,
+      ...props
+    } = this.props;
     const {isFocused} = this.state;
     const labelStyle: StyleProp<TextStyle> = {
       position: 'absolute',
@@ -46,12 +61,27 @@ export default class FloatingLabelInput extends React.Component<
         <TextInput
           {...props}
           value={value}
-          style={[Style.textInput]}
+          style={[
+            Style.textInput,
+            error ? Style.errorBorder : Style.primaryBorder,
+          ]}
           onFocus={this.handleFocus}
           onBlur={this.handleBlur}
+          maxLength={maxLength}
+          autoCompleteType={'email'}
           blurOnSubmit
         />
-        {Boolean(hint) && <Text style={Style.hint}>{hint}</Text>}
+        {error && warningMessage && (
+          <Text style={[Style.hint, Style.errorMessage]}>{warningMessage}</Text>
+        )}
+        {Boolean(hint) && !(error && warningMessage) && (
+          <Text style={Style.hint}>{hint}</Text>
+        )}
+        {Boolean(maxLength) && Boolean(showCharacterCount) && (
+          <Text style={Style.characterCount}>
+            {value.length + '/' + maxLength}
+          </Text>
+        )}
       </View>
     );
   }
@@ -64,7 +94,6 @@ const Style = StyleSheet.create({
   textInput: {
     height: 40,
     width: '100%',
-    borderColor: COLORS.PRIMARY,
     borderBottomWidth: 1,
     color: COLORS.PRIMARY,
     fontSize: 16,
@@ -73,5 +102,21 @@ const Style = StyleSheet.create({
     color: COLORS.SECONDARY,
     fontSize: 12,
     paddingVertical: 5,
+  },
+  primaryBorder: {
+    borderColor: COLORS.PRIMARY,
+  },
+  errorBorder: {
+    borderColor: COLORS.WARNING_RED,
+  },
+  errorMessage: {
+    color: COLORS.WARNING_RED,
+  },
+  characterCount: {
+    position: 'absolute',
+    top: 36,
+    right: 0,
+    fontSize: 10,
+    color: COLORS.GRAY44,
   },
 });

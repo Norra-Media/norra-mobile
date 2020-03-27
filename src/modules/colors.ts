@@ -5,4 +5,5 @@ export const COLORS = {
   WHITE: '#FFF',
   GRAY44: '#707070',
   SPEECH_BLUE: '#3F3FA2',
+  WARNING_RED: '#ff0000',
 };
