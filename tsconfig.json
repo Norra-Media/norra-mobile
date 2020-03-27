@@ -10,11 +10,18 @@
     "noEmit": true,
     "strict": true,
     "target": "esnext",
-    "baseUrl": ".",
+    "baseUrl": "./src",
     "paths": {
       "*": ["src/*"],
-      "tests": ["tests/*"]
-    },
+      "tests": ["tests/*"],
+      "@components": ["components"],
+      "@components/*": ["components/*"],
+      "@containers": ["containers"],
+      "@containers/*": ["containers/*"],
+      "@modules": ["modules"],
+      "@modules/*": ["modules/*"],
+      "@assets/*": ["assets/*"]
+    }
   },
   "exclude": [
     "node_modules",

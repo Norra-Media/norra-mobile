@@ -8,13 +8,16 @@ import {
   TextInput,
   ScrollView,
 } from 'react-native';
-import KeyboardShift from '../../components/keyboardShift';
 import {AccessToken, LoginManager} from 'react-native-fbsdk';
 import {GoogleSignin, statusCodes} from 'react-native-google-signin';
-import FacebookLogo from '../../../assets/facebook_logo.svg';
-import GoogleLogo from '../../../assets/google_logo.svg';
-import NorraLogo from '../../../assets/norra_logo.svg';
-import SignupNetworkWeb from '../../../assets/signup_network_web.svg';
+import FacebookLogo from '@assets/facebook_logo.svg';
+import GoogleLogo from '@assets/google_logo.svg';
+import NorraLogo from '@assets/norra_logo.svg';
+import SignupNetworkWeb from '@assets/signup_network_web.svg';
+import {GOOGLE_SIGNIN_CONFIGURATIONS, LOGINTYPES} from '@modules/constants';
+import {facebookGraphUrl} from '@modules/urls';
+import KeyboardShift from '@components/keyboardShift';
+import {COLORS} from '@modules/colors';
 
 export default class Home extends Component {
   state = {
@@ -24,16 +27,7 @@ export default class Home extends Component {
 
   loginUsingGoogle = async () => {
     GoogleSignin.configure({
-      scopes: [], // what API you want to access on behalf of the user, default is email and profile
-      webClientId:
-        '930089845590-s078k7ii6rt64eoaor9id17p21gdk3v9.apps.googleusercontent.com', // client ID of type WEB for your server (needed to verify user ID and offline access)
-      offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
-      hostedDomain: '', // specifies a hosted domain restriction
-      loginHint: '', // [iOS] The user's ID, or email address, to be prefilled in the authentication UI if possible. [See docs here](https://developers.google.com/identity/sign-in/ios/api/interface_g_i_d_sign_in.html#a0a68c7504c31ab0b728432565f6e33fd)
-      forceConsentPrompt: true, // [Android] if you want to show the authorization prompt at each login.
-      accountName: '', // [Android] specifies an account name on the device that should be used
-      iosClientId:
-        '930089845590-h9l64aorv23u7egacsjt6svi2t4mj3v1.apps.googleusercontent.com', // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
+      ...GOOGLE_SIGNIN_CONFIGURATIONS,
     });
     try {
       await GoogleSignin.hasPlayServices();
@@ -43,7 +37,7 @@ export default class Home extends Component {
         email: userInfo.user.email,
         photo: userInfo.user.photo,
         id: userInfo.user.id,
-        loginType: 'GOOGLE',
+        loginType: LOGINTYPES.GOOGLE,
       };
       this.setState({user});
       console.log(user);
@@ -89,10 +83,7 @@ export default class Home extends Component {
   };
 
   initUser(token: string) {
-    fetch(
-      'https://graph.facebook.com/v2.5/me?fields=email,name,picture.type(large)&access_token=' +
-        token,
-    )
+    fetch(facebookGraphUrl(token))
       .then(response => response.json())
       .then(userInfo => {
         const user = {
@@ -100,7 +91,7 @@ export default class Home extends Component {
           email: userInfo.email,
           photo: userInfo.picture.data.url,
           id: userInfo.id,
-          loginType: 'FACEBOOK',
+          loginType: LOGINTYPES.FACEBOOK,
         };
         this.setState({user});
         console.log(user);
@@ -114,7 +105,10 @@ export default class Home extends Component {
     return (
       <SafeAreaView style={Styles.container}>
         <KeyboardShift>
-          <ScrollView bounces={false} showsVerticalScrollIndicator={false}>
+          <ScrollView
+            bounces={false}
+            showsVerticalScrollIndicator={false}
+            style={{flex: 1}}>
             <SignupNetworkWeb style={Styles.backgroundImage} />
             <View style={Styles.childContainer}>
               <View style={Styles.innerContainer}>
@@ -140,7 +134,7 @@ export default class Home extends Component {
                   <Text style={Styles.dividerText}>Or</Text>
                   <View style={Styles.greyLine} />
                 </View>
-                <Text style={Styles.headerText}>Email Address</Text>
+                <Text style={Styles.headerText}>Continue with email</Text>
                 <TextInput
                   style={[
                     Styles.button,
@@ -151,34 +145,25 @@ export default class Home extends Component {
                   keyboardType={'email-address'}
                   maxLength={50}
                   numberOfLines={1}
-                  placeholderTextColor={'#3F3FA2'}
+                  placeholderTextColor={COLORS.SPEECH_BLUE}
                   autoCompleteType={'email'}
                   autoCapitalize={'none'}
                   value={this.state.email}
                   onChangeText={email => this.setState({email})}
                 />
                 <TouchableOpacity style={[Styles.button, Styles.submitButton]}>
-                  <Text style={Styles.submitButtonText}>
-                    Sign up using email
-                  </Text>
-                </TouchableOpacity>
-                <View style={Styles.loginButton}>
-                  <Text>Have an account?</Text>
-                  <TouchableOpacity>
-                    <Text style={[Styles.buttonText, Styles.blueText]}>
-                      Login
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-
-                <TouchableOpacity style={Styles.termsConditions}>
-                  <Text style={[Styles.buttonText, Styles.blueText]}>
-                    Terms and conditions
-                  </Text>
+                  <Text style={Styles.submitButtonText}>Continue</Text>
                 </TouchableOpacity>
               </View>
             </View>
           </ScrollView>
+          <View style={{alignSelf: 'center'}}>
+            <TouchableOpacity style={Styles.termsConditions}>
+              <Text style={[Styles.buttonText, Styles.blueText]}>
+                Terms and conditions
+              </Text>
+            </TouchableOpacity>
+          </View>
         </KeyboardShift>
       </SafeAreaView>
     );
@@ -205,7 +190,7 @@ const Styles = StyleSheet.create({
     padding: 24,
   },
   innerContainer: {
-    width: 226,
+    paddingHorizontal: 50,
     alignItems: 'center',
   },
   button: {
@@ -213,12 +198,12 @@ const Styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     padding: 10,
-    width: 226,
     height: 39,
     borderRadius: 10,
+    alignSelf: 'stretch',
   },
   blueButton: {
-    borderColor: '#000080',
+    borderColor: COLORS.PRIMARY,
     borderWidth: 1,
   },
   buttonText: {
@@ -238,11 +223,11 @@ const Styles = StyleSheet.create({
   },
   greyLine: {
     flex: 1,
-    backgroundColor: '#707070',
+    backgroundColor: COLORS.GRAY44,
     height: 1,
   },
   dividerText: {
-    color: '#707070',
+    color: COLORS.GRAY44,
     marginHorizontal: 10,
     fontSize: 14,
     fontWeight: '500',
@@ -250,29 +235,25 @@ const Styles = StyleSheet.create({
   headerText: {
     fontSize: 14,
     fontWeight: '500',
-    color: '#000080',
-    width: '100%',
+    color: COLORS.PRIMARY,
+    alignSelf: 'stretch',
   },
   blueInputField: {
     fontSize: 14,
     fontWeight: '500',
-    color: '#000080',
+    color: COLORS.PRIMARY,
   },
   submitButton: {
-    backgroundColor: '#ED4264',
+    backgroundColor: COLORS.BRIGHT_RED,
     justifyContent: 'center',
   },
   submitButtonText: {
-    color: '#FFF',
+    color: COLORS.WHITE,
     fontSize: 16,
     fontWeight: '600',
   },
   blueText: {
-    color: '#000080',
-  },
-  loginButton: {
-    flexDirection: 'row',
-    marginVertical: 10,
+    color: COLORS.PRIMARY,
   },
   termsConditions: {
     marginTop: 0,

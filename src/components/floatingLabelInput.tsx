@@ -7,6 +7,7 @@ import {
   StyleProp,
   StyleSheet,
 } from 'react-native';
+import {COLORS} from '@modules/colors';
 
 interface IFloatingLabelInputProps {
   label: string;
@@ -19,7 +20,7 @@ interface IFloatingLabelInputState {
   isFocused: boolean;
 }
 
-export class FloatingLabelInput extends React.Component<
+export default class FloatingLabelInput extends React.Component<
   IFloatingLabelInputProps,
   IFloatingLabelInputState
 > {
@@ -37,7 +38,7 @@ export class FloatingLabelInput extends React.Component<
       left: 0,
       top: !(isFocused || value) ? 25 : -2,
       fontSize: !(isFocused || value) ? 16 : 14,
-      color: !(isFocused || value) ? '#000080' : '#9494ff',
+      color: !(isFocused || value) ? COLORS.PRIMARY : COLORS.SECONDARY,
     };
     return (
       <View style={Style.contatiner}>
@@ -63,13 +64,13 @@ const Style = StyleSheet.create({
   textInput: {
     height: 40,
     width: '100%',
-    borderColor: '#000080',
+    borderColor: COLORS.PRIMARY,
     borderBottomWidth: 1,
-    color: '#000080',
+    color: COLORS.PRIMARY,
     fontSize: 16,
   },
   hint: {
-    color: '#9494ff',
+    color: COLORS.SECONDARY,
     fontSize: 12,
     paddingVertical: 5,
   },

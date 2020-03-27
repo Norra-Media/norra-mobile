@@ -1,12 +1,20 @@
 import React from 'react';
 import BottomModal from './bottomModal';
 import {TouchableOpacity, Text, View, StyleSheet} from 'react-native';
-import ImagePicker from 'react-native-image-crop-picker';
-import Camera from '../../assets/camera_edit_option.svg';
+import ImagePicker, {Image} from 'react-native-image-crop-picker';
+import Camera from '@assets/camera_edit_option.svg';
+import {COLORS} from '@modules/colors';
+
+export interface ImageData {
+  uri: string;
+  width: number;
+  height: number;
+  mime: string;
+}
 interface IImageInputProps {
   open: boolean;
   onClose: () => void;
-  handleImage: (any) => void;
+  handleImage: (image: ImageData) => void;
 }
 
 export default class ImageInput extends React.Component<IImageInputProps> {
@@ -17,16 +25,16 @@ export default class ImageInput extends React.Component<IImageInputProps> {
       width: 300,
       height: 400,
       cropping: true,
-    }).then(image => {
+    }).then((image: Image | Image[]) => {
       console.log(image);
-      this.props.handleImage({
-        image: {
+      if (image && !Array.isArray(image)) {
+        this.props.handleImage({
           uri: image.path,
           width: image.width,
           height: image.height,
           mime: image.mime,
-        },
-      });
+        });
+      }
     });
   };
   openCamera = () => {
@@ -38,16 +46,16 @@ export default class ImageInput extends React.Component<IImageInputProps> {
       cropping: true,
       useFrontCamera: true,
       forceJpg: true,
-    }).then(image => {
+    }).then((image: Image | Image[]) => {
       console.log(image);
-      this.props.handleImage({
-        image: {
+      if (image && !Array.isArray(image)) {
+        this.props.handleImage({
           uri: image.path,
           width: image.width,
           height: image.height,
           mime: image.mime,
-        },
-      });
+        });
+      }
     });
   };
   render() {
@@ -80,12 +88,12 @@ const Style = StyleSheet.create({
     justifyContent: 'space-between',
   },
   greyLine: {
-    backgroundColor: '#707070',
+    backgroundColor: COLORS.GRAY44,
     height: 1,
   },
   optionsText: {
     fontSize: 16,
-    color: '#000080',
+    color: COLORS.PRIMARY,
     fontWeight: '400',
   },
 });

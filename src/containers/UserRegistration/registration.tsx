@@ -5,17 +5,18 @@ import {
   StyleSheet,
   TouchableOpacity,
   Image,
-  Alert,
-  TextInput,
 } from 'react-native';
-import UploadProfileLogo from '../../../assets/upload_profile_pic.svg';
-import {FloatingLabelInput} from 'components/floatingLabelInput';
-import {FloatingLabelView} from 'components/floatingLabelView';
-import KeyboardShift from 'components/keyboardShift';
-import {DateTimePicker} from 'components';
+import {
+  DateTimePicker,
+  KeyboardShift,
+  ImageInput,
+  FloatingLabelInput,
+  FloatingLabelView,
+} from '@components';
 import Moment from 'moment';
-import ImageInput from 'components/imageInput';
-import Camera from '../../../assets/camera_edit_option.svg';
+import Camera from '@assets/camera_edit_option.svg';
+import UploadProfileLogo from '@assets/upload_profile_pic.svg';
+import {ImageData} from '@components/imageInput';
 
 enum FIELDS {
   NAME,
@@ -23,7 +24,20 @@ enum FIELDS {
   ABOUT,
   DOB,
 }
-export class Registration extends React.Component {
+interface IRegistrationProps {}
+interface IRegistrationState {
+  name: string;
+  about: string;
+  email: string;
+  dob: string;
+  showDatePicker: Boolean;
+  imageOptions: Boolean;
+  image: ImageData | {};
+}
+export class Registration extends React.Component<
+  IRegistrationProps,
+  IRegistrationState
+> {
   state = {
     name: '',
     about: '',
@@ -31,7 +45,7 @@ export class Registration extends React.Component {
     dob: '',
     showDatePicker: false,
     imageOptions: false,
-    image: {},
+    image: {} as ImageData,
   };
   handleTextChange = (field: FIELDS, text: string) => {
     switch (field) {
@@ -57,8 +71,8 @@ export class Registration extends React.Component {
   toggleImageOptions = (value: Boolean) => {
     this.setState({imageOptions: value});
   };
-  handleImageChange = image => {
-    this.setState(image);
+  handleImageChange = (image: ImageData) => {
+    this.setState({image: {...image}});
   };
 
   render() {
@@ -94,7 +108,7 @@ export class Registration extends React.Component {
                   mandatory={true}
                   value={name}
                   hint={'Your name will be added to all your posts.'}
-                  onChangeText={text =>
+                  onChangeText={(text: string) =>
                     this.handleTextChange(FIELDS.NAME, text)
                   }
                 />
@@ -104,7 +118,7 @@ export class Registration extends React.Component {
                   label="About"
                   value={about}
                   hint={'Tell us something about yourself.'}
-                  onChangeText={text =>
+                  onChangeText={(text: string) =>
                     this.handleTextChange(FIELDS.ABOUT, text)
                   }
                 />
@@ -115,7 +129,7 @@ export class Registration extends React.Component {
                   mandatory={true}
                   value={email}
                   hint={"Be assured! We won't spam you."}
-                  onChangeText={text =>
+                  onChangeText={(text: string) =>
                     this.handleTextChange(FIELDS.EMAIL, text)
                   }
                 />
@@ -149,7 +163,9 @@ export class Registration extends React.Component {
         <ImageInput
           open={imageOptions}
           onClose={() => this.toggleImageOptions(false)}
-          handleImage={image => this.handleImageChange(image)}
+          handleImage={(imageData: ImageData) =>
+            this.handleImageChange(imageData)
+          }
         />
       </SafeAreaView>
     );
@@ -168,29 +184,8 @@ const Styles = StyleSheet.create({
   childContainer: {
     width: 266,
   },
-  textInput: {
-    height: 29,
-    width: '100%',
-    borderColor: '#000080',
-    borderBottomWidth: 1,
-  },
-  viewInput: {
-    width: '100%',
-    borderColor: '#000080',
-    borderBottomWidth: 1,
-    height: 24,
-    marginTop: 5,
-  },
-  label: {
-    color: '#9494ff',
-    fontSize: 12,
-    paddingVertical: 5,
-  },
   inputRow: {
     paddingVertical: 5,
-  },
-  placeholder: {
-    color: '#000080',
   },
   profileImageWrapper: {
     alignItems: 'center',

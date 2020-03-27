@@ -6,6 +6,7 @@ import {
   Animated,
   Dimensions,
 } from 'react-native';
+import {COLORS} from '@modules/colors';
 
 interface IBottomModalProps {
   open: Boolean;
@@ -22,7 +23,7 @@ export default class BottomModal extends React.Component<
     animation: new Animated.Value(0),
   };
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps: IBottomModalProps) {
     if (this.props.open && prevProps.open !== this.props.open) {
       this.handleOpen();
     }
@@ -116,7 +117,7 @@ const Styles = StyleSheet.create({
     justifyContent: 'flex-end',
   },
   popup: {
-    backgroundColor: '#FFF',
+    backgroundColor: COLORS.WHITE,
     borderTopLeftRadius: 5,
     borderTopRightRadius: 5,
     alignItems: 'center',

@@ -1,42 +1,49 @@
 import React from 'react';
 import {View, StyleSheet, TouchableOpacity, Text} from 'react-native';
-import BottomModal from 'components/bottomModal';
 import RNDateTimePicker from '@react-native-community/datetimepicker';
+import BottomModal from '@components/bottomModal';
+import {COLORS} from '@modules/colors';
 
 interface IDateTimePickerProps {
   open: Boolean;
   onClose: () => void;
-  value: String;
-  onChange: (value: String) => void;
+  value: string;
+  onChange: (value: string) => void;
   display: 'spinner' | 'default' | 'clock' | 'calendar' | undefined;
+}
+interface IDateTimePickerState {
+  date: Date | undefined;
 }
 
 export default class DateTimePicker extends React.Component<
-  IDateTimePickerProps
+  IDateTimePickerProps,
+  IDateTimePickerState
 > {
   state = {
-    date: this.props.value || new Date(),
+    date: this.props.value ? new Date(this.props.value) : new Date(),
   };
   onClose = () => {
-    this.setState({date: this.props.value});
+    this.setState({
+      date: this.props.value ? new Date(this.props.value) : new Date(),
+    });
     this.props.onClose();
   };
   render() {
+    const {date} = this.state;
     return (
       <BottomModal open={this.props.open} onClose={this.onClose}>
         <View style={Style.wrapperView}>
           <RNDateTimePicker
-            testID="dateTimePicker"
             timeZoneOffsetInMinutes={0}
-            value={new Date(this.state.date) || new Date()}
+            value={new Date(date) || new Date()}
             mode={'date'}
             is24Hour={true}
             display={this.props.display || 'default'}
-            onChange={(event, date) => {
-              this.setState({date});
+            onChange={(event, value) => {
+              this.setState({date: value});
             }}
             maximumDate={new Date()}
-            textColor="#000080"
+            textColor={COLORS.PRIMARY}
           />
           <TouchableOpacity
             style={Style.submitButton}
@@ -55,14 +62,14 @@ const Style = StyleSheet.create({
     padding: 24,
   },
   submitButton: {
-    backgroundColor: '#ED4264',
+    backgroundColor: COLORS.BRIGHT_RED,
     alignItems: 'center',
     borderRadius: 20,
     padding: 10,
     marginTop: 10,
   },
   submitText: {
-    color: '#FFF',
+    color: COLORS.WHITE,
     fontSize: 16,
     fontWeight: '500',
   },

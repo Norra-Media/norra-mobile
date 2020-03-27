@@ -7,11 +7,16 @@ import {
   TextInput,
   UIManager,
   EmitterSubscription,
+  StyleProp,
+  ViewStyle,
 } from 'react-native';
 
 const {State: TextInputState} = TextInput;
 
-export default class KeyboardShift extends Component {
+interface IKeyboardShiftProps {
+  extraStyles?: StyleProp<ViewStyle>;
+}
+export default class KeyboardShift extends Component<IKeyboardShiftProps> {
   keyboardDidShowSub: EmitterSubscription | null = null;
   keyboardDidHideSub: EmitterSubscription | null = null;
   state = {
@@ -37,11 +42,15 @@ export default class KeyboardShift extends Component {
   }
 
   render() {
-    const {children} = this.props;
+    const {children, extraStyles} = this.props;
     const {shift} = this.state;
     return (
       <Animated.View
-        style={[styles.container, {transform: [{translateY: shift}]}]}>
+        style={[
+          styles.container,
+          {transform: [{translateY: shift}]},
+          extraStyles,
+        ]}>
         {children}
       </Animated.View>
     );

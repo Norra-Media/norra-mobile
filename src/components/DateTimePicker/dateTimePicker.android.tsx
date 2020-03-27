@@ -1,10 +1,10 @@
 import React from 'react';
 import RNDateTimePicker from '@react-native-community/datetimepicker';
+import {COLORS} from '@modules/colors';
 
 interface IDateTimePickerProps {
   open: Boolean;
-  onClose: () => void;
-  value: String;
+  value: string;
   onChange: (value: String) => void;
 }
 
@@ -12,20 +12,21 @@ export default class DateTimePicker extends React.Component<
   IDateTimePickerProps
 > {
   render() {
+    const {open, value, onChange} = this.props;
     return (
-      this.props.open && (
+      open && (
         <RNDateTimePicker
           testID="dateTimePicker"
           timeZoneOffsetInMinutes={0}
-          value={this.props.value ? new Date(this.props.value) : new Date()}
+          value={value ? new Date(value) : new Date()}
           mode={'date'}
           is24Hour={true}
           display="default"
           onChange={(event, date) => {
-            this.props.onChange(String(date));
+            onChange(String(date));
           }}
           maximumDate={new Date()}
-          textColor="#000080"
+          textColor={COLORS.PRIMARY}
         />
       )
     );
