@@ -7,20 +7,36 @@ import {
   Image,
   ScrollView,
 } from 'react-native';
+import Moment from 'moment';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {RouteProp} from '@react-navigation/native';
+import Camera from '@assets/camera_edit_option.svg';
+import UploadProfileLogo from '@assets/upload_profile_pic.svg';
+import RedSubmitIcon from '@assets/red_submit.svg';
 import {
   DateTimePicker,
   KeyboardShift,
   ImageInput,
   FloatingLabelInput,
   FloatingLabelView,
+  CustomHeader,
+  ImageData,
 } from '@components';
-import Moment from 'moment';
-import Camera from '@assets/camera_edit_option.svg';
-import UploadProfileLogo from '@assets/upload_profile_pic.svg';
-import RedSubmitIcon from '@assets/red_submit.svg';
-import {ImageData} from '@components/imageInput';
-import {COLORS} from '@modules/colors';
-import {validateEmail} from '@modules/services';
+import {
+  RootStackParamList,
+  GlobalStyles,
+  validateEmail,
+  COLORS,
+} from '@modules';
+
+type RegistrationScreenNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  'Registration'
+>;
+type RegistrationScreenRouteProp = RouteProp<
+  RootStackParamList,
+  'Registration'
+>;
 
 enum FIELDS {
   NAME,
@@ -28,7 +44,10 @@ enum FIELDS {
   ABOUT,
   DOB,
 }
-interface IRegistrationProps {}
+interface IRegistrationProps {
+  navigation: RegistrationScreenNavigationProp;
+  route: RegistrationScreenRouteProp;
+}
 interface IRegistrationState {
   name: string;
   about: string;
@@ -45,15 +64,17 @@ export class Registration extends React.Component<
   IRegistrationState
 > {
   state = {
-    name: '',
+    name: this.props.route.params.name || '',
     about: '',
-    email: '',
+    email: this.props.route.params.email || '',
     dob: '',
     showDatePicker: false,
     imageOptions: false,
-    image: {} as ImageData,
+    image: this.props.route.params.photo
+      ? {uri: this.props.route.params.photo}
+      : ({} as ImageData),
     errors: {name: false, email: false, dob: false},
-    emailEditable: true,
+    emailEditable: this.props.route.params.email ? false : true,
   };
 
   handleTextChange = (field: FIELDS, text: string) => {
@@ -120,10 +141,15 @@ export class Registration extends React.Component<
       errors,
       emailEditable,
     } = this.state;
+
     return (
-      <View style={Styles.layout}>
+      <View style={GlobalStyles.container}>
         <SafeAreaView />
-        <KeyboardShift>
+        <CustomHeader
+          title={'Sign Up'}
+          onLeftButtonPress={this.props.navigation.goBack}
+        />
+        <KeyboardShift extraStyles={GlobalStyles.viewPaddingWithHeader}>
           <ScrollView bounces={false} showsVerticalScrollIndicator={false}>
             <View style={Styles.container}>
               <View style={Styles.childContainer}>
@@ -232,11 +258,8 @@ export class Registration extends React.Component<
 }
 
 const Styles = StyleSheet.create({
-  layout: {
-    flex: 1,
-  },
   container: {
-    padding: 24,
+    paddingHorizontal: 24,
     alignItems: 'center',
     flex: 1,
   },
@@ -266,3 +289,5 @@ const Styles = StyleSheet.create({
     margin: 30,
   },
 });
+
+export default ({navigation}) => <Registration />;

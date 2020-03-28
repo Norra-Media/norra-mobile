@@ -107,6 +107,7 @@ const Styles = StyleSheet.create({
   },
   cover: {
     backgroundColor: 'rgba(0,0,0,.75)',
+    zIndex: 100,
   },
   sheet: {
     position: 'absolute',

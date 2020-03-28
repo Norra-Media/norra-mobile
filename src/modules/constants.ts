@@ -14,4 +14,5 @@ export const GOOGLE_SIGNIN_CONFIGURATIONS = {
 export enum LOGINTYPES {
   FACEBOOK,
   GOOGLE,
+  EMAIL,
 }

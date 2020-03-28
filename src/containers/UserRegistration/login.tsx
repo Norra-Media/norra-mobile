@@ -14,14 +14,26 @@ import FacebookLogo from '@assets/facebook_logo.svg';
 import GoogleLogo from '@assets/google_logo.svg';
 import NorraLogo from '@assets/norra_logo.svg';
 import SignupNetworkWeb from '@assets/signup_network_web.svg';
-import {GOOGLE_SIGNIN_CONFIGURATIONS, LOGINTYPES} from '@modules/constants';
-import {facebookGraphUrl} from '@modules/urls';
-import KeyboardShift from '@components/keyboardShift';
-import {COLORS} from '@modules/colors';
-import {GlobalStyles} from '@modules/globalStyles';
-import {validateEmail} from '@modules/services';
+import {KeyboardShift} from '@components';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {
+  RootStackParamList,
+  COLORS,
+  GlobalStyles,
+  validateEmail,
+  facebookGraphUrl,
+  GOOGLE_SIGNIN_CONFIGURATIONS,
+  LOGINTYPES,
+} from '@modules';
 
-export default class Home extends Component {
+type LoginScreenNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  'Login'
+>;
+interface ILoginProps {
+  navigation: LoginScreenNavigationProp;
+}
+export class Login extends Component<ILoginProps> {
   state = {
     email: '',
     user: null,
@@ -44,6 +56,7 @@ export default class Home extends Component {
       };
       this.setState({user});
       console.log(user);
+      this.props.navigation.navigate('Registration', {...user});
     } catch (error) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
         // user cancelled the login flow
@@ -98,6 +111,7 @@ export default class Home extends Component {
         };
         this.setState({user});
         console.log(user);
+        this.props.navigation.navigate('Registration', {...user});
       })
       .catch(() => {
         console.log('ERROR GETTING DATA FROM FACEBOOK');
@@ -107,6 +121,13 @@ export default class Home extends Component {
   emailLogin = () => {
     const {email} = this.state;
     if (email && validateEmail(email)) {
+      this.props.navigation.navigate('Registration', {
+        name: '',
+        email: email,
+        photo: '',
+        id: '',
+        loginType: LOGINTYPES.EMAIL,
+      });
     } else {
       this.setState({emailNotFound: true});
     }
