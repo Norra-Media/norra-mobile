@@ -21,7 +21,8 @@
       "@modules": ["modules"],
       "@modules/*": ["modules/*"],
       "@assets/*": ["assets/*"]
-    }
+    },
+    "typeRoots": ["../node_modules/@types", "types"]
   },
   "exclude": [
     "node_modules",

@@ -42,8 +42,8 @@ export default class SliderImageGallery extends React.Component {
   };
 
   onScrollEndDrag = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-    const {layoutMeasurement, targetContentOffset} = event.nativeEvent;
-    const xValue = Math.round(targetContentOffset.x / layoutMeasurement.width);
+    const {layoutMeasurement, contentOffset} = event.nativeEvent;
+    const xValue = Math.round(contentOffset.x / layoutMeasurement.width);
     this.setState({currentIndex: xValue});
     this.refScrollView?.scrollTo({
       x: xValue * layoutMeasurement.width,

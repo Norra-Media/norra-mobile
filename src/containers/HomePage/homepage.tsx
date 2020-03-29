@@ -1,15 +1,39 @@
 import React from 'react';
-import {View, SafeAreaView} from 'react-native';
+import {
+  View,
+  SafeAreaView,
+  NativeSyntheticEvent,
+  NativeScrollEvent,
+} from 'react-native';
 import {GlobalStyles} from '@modules';
 import {CustomHeader, Drawer} from '@components';
 import {ScrollView} from 'react-native-gesture-handler';
 import {ExpressThoughts} from './expressThoughts';
 import {SuggestedCommunities} from './suggestedCommunities';
 import {Article} from './article';
+import {BottomActionNavigator} from '@containers/bottomActionNavigator';
 
 export class HomePage extends React.Component {
   state = {
     showDrawer: false,
+    showBottomActionNavigator: true,
+  };
+
+  onScrollEndDrag = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+    const {layoutMeasurement, contentOffset, contentSize} = event.nativeEvent;
+    const paddingToBottom = 20;
+    let showButton = true;
+    if (
+      layoutMeasurement.height + contentOffset.y >=
+      contentSize.height - paddingToBottom
+    ) {
+      showButton = false;
+    } else {
+      showButton = true;
+    }
+    if (showButton !== this.state.showBottomActionNavigator) {
+      this.setState({showBottomActionNavigator: showButton});
+    }
   };
   render() {
     return (
@@ -24,7 +48,8 @@ export class HomePage extends React.Component {
         <ScrollView
           stickyHeaderIndices={[0]}
           bounces={false}
-          style={GlobalStyles.backgroundColorLightGray}>
+          style={GlobalStyles.backgroundColorLightGray}
+          onScrollEndDrag={this.onScrollEndDrag}>
           <ExpressThoughts />
           <SuggestedCommunities />
           <Article />
@@ -35,6 +60,7 @@ export class HomePage extends React.Component {
             this.setState({showDrawer: false});
           }}
         />
+        <BottomActionNavigator open={this.state.showBottomActionNavigator} />
       </View>
     );
   }
