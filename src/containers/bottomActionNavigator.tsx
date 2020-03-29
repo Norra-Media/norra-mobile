@@ -1,85 +1,65 @@
 import React from 'react';
 
-import ActionButton from 'react-native-circular-action-menu';
-import Profile from '@assets/profile.svg';
-import WritePost from '@assets/write_post.svg';
+import Profile from '@assets/profile_white_filled.svg';
+import WritePost from '@assets/post_white_filled.svg';
 import NorraBlue from '@assets/norra_blue.svg';
-import HomeIcon from '@assets/home_blue_white_filled.svg';
-import NotificationIcon from '@assets/notification_border_only.svg';
-import {COLORS} from '@modules';
-import {Animated, StyleSheet} from 'react-native';
+import HomeIcon from '@assets/home_white_filled.svg';
+import NotificationIcon from '@assets/notification_white_filled.svg';
+import {COLORS, UserStackParamList} from '@modules';
+import {ActionButton} from '@components';
+import {StackNavigationProp} from '@react-navigation/stack';
 
+type HomePageScreenNavigationProp = StackNavigationProp<
+  UserStackParamList,
+  'HomePage'
+>;
 interface Props {
   open: boolean;
+  navigation: HomePageScreenNavigationProp;
 }
 export class BottomActionNavigator extends React.Component<Props> {
-  animation = new Animated.Value(1);
-
-  componentDidUpdate(PrevProps: Props) {
-    if (this.props.open !== PrevProps.open && this.props.open) {
-      this.startAnimation(1);
-    }
-    if (this.props.open !== PrevProps.open && !this.props.open) {
-      this.startAnimation(0);
-    }
-  }
-
-  startAnimation = (opacity: number) => {
-    Animated.timing(this.animation, {
-      toValue: opacity,
-      duration: 400,
-    }).start();
-  };
-
   render() {
-    const animatedStyle = {
-      opacity: this.animation,
-    };
     const buttonItemsProps = {
       height: 22,
       width: 20,
       style: {padding: 10},
     };
+    const actionButtonItemProps = {
+      size: 50,
+      buttonColor: COLORS.PRIMARY,
+    };
     return (
-      <Animated.View style={[animatedStyle, Style.container]}>
-        <ActionButton
+      <ActionButton
+        open={this.props.open}
+        buttonColor={COLORS.PRIMARY}
+        btnOutRange={COLORS.VERYLIGHTGREY}
+        icon={<NorraBlue width={25} height={22} />}>
+        <ActionButton.Item
+          {...actionButtonItemProps}
+          title="Home"
+          onPress={() => console.log('Home tapped!')}>
+          <HomeIcon {...buttonItemsProps} />
+        </ActionButton.Item>
+        <ActionButton.Item
+          {...actionButtonItemProps}
+          title="New Post"
           buttonColor={COLORS.WHITE}
-          btnOutRange={COLORS.VERYLIGHTGRAY}
-          icon={<NorraBlue width={25} height={22} />}>
-          <ActionButton.Item
-            buttonColor={COLORS.WHITE}
-            title="Home"
-            onPress={() => console.log('Home tapped!')}>
-            <HomeIcon {...buttonItemsProps} />
-          </ActionButton.Item>
-          <ActionButton.Item
-            buttonColor={COLORS.WHITE}
-            title="New Post"
-            onPress={() => {}}>
-            <WritePost {...buttonItemsProps} />
-          </ActionButton.Item>
-          <ActionButton.Item
-            buttonColor={COLORS.WHITE}
-            title="Notifications"
-            onPress={() => {}}>
-            <NotificationIcon {...buttonItemsProps} />
-          </ActionButton.Item>
-          <ActionButton.Item
-            buttonColor={COLORS.WHITE}
-            title="Profile"
-            onPress={() => {}}>
-            <Profile {...buttonItemsProps} />
-          </ActionButton.Item>
-        </ActionButton>
-      </Animated.View>
+          onPress={() => this.props.navigation.push('NewPost')}>
+          <WritePost {...buttonItemsProps} height={55} width={52} />
+        </ActionButton.Item>
+        <ActionButton.Item
+          {...actionButtonItemProps}
+          title="Notifications"
+          onPress={() => {}}>
+          <NotificationIcon {...buttonItemsProps} />
+        </ActionButton.Item>
+        <ActionButton.Item
+          {...actionButtonItemProps}
+          title="Profile"
+          onPress={() => {}}>
+          <Profile {...buttonItemsProps} />
+        </ActionButton.Item>
+      </ActionButton>
     );
   }
 }
-
-const Style = StyleSheet.create({
-  container: {
-    position: 'absolute',
-    bottom: 20,
-    left: '48%',
-  },
-});

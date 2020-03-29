@@ -5,15 +5,23 @@ import {
   NativeSyntheticEvent,
   NativeScrollEvent,
 } from 'react-native';
-import {GlobalStyles} from '@modules';
+import {GlobalStyles, UserStackParamList} from '@modules';
 import {CustomHeader, Drawer} from '@components';
 import {ScrollView} from 'react-native-gesture-handler';
 import {ExpressThoughts} from './expressThoughts';
 import {SuggestedCommunities} from './suggestedCommunities';
 import {Article} from './article';
 import {BottomActionNavigator} from '@containers/bottomActionNavigator';
+import {StackNavigationProp} from '@react-navigation/stack';
 
-export class HomePage extends React.Component {
+type HomePageScreenNavigationProp = StackNavigationProp<
+  UserStackParamList,
+  'HomePage'
+>;
+interface IHomePageProps {
+  navigation: HomePageScreenNavigationProp;
+}
+export class HomePage extends React.Component<IHomePageProps> {
   state = {
     showDrawer: false,
     showBottomActionNavigator: true,
@@ -60,7 +68,10 @@ export class HomePage extends React.Component {
             this.setState({showDrawer: false});
           }}
         />
-        <BottomActionNavigator open={this.state.showBottomActionNavigator} />
+        <BottomActionNavigator
+          open={this.state.showBottomActionNavigator}
+          navigation={this.props.navigation}
+        />
       </View>
     );
   }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ReactNode} from 'react';
 import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {COLORS} from '@modules/colors';
 import BackArrow from '@assets/back_arrow.svg';
@@ -9,6 +9,7 @@ interface ICustomHeaderProps {
   title?: string;
   onLeftButtonPress: () => void;
   type: 'HOME' | 'SIMPLE';
+  rightButton: ReactNode;
 }
 export default class CustomHeader extends React.Component<ICustomHeaderProps> {
   renderHomeHeader = () => {
@@ -20,6 +21,7 @@ export default class CustomHeader extends React.Component<ICustomHeaderProps> {
           <Hamburger height={20} width={20} />
         </TouchableOpacity>
         <NorraLogo height={200} width={100} />
+        {this.props.rightButton}
       </View>
     );
   };
@@ -27,9 +29,10 @@ export default class CustomHeader extends React.Component<ICustomHeaderProps> {
     return (
       <View style={Style.stickyheader}>
         <TouchableOpacity onPress={this.props.onLeftButtonPress}>
-          <BackArrow height={15} width={15} />
+          <BackArrow height={15} width={24} />
         </TouchableOpacity>
         <Text style={Style.headerText}>{this.props.title}</Text>
+        <View style={Style.rightButton}>{this.props.rightButton}</View>
       </View>
     );
   };
@@ -55,8 +58,8 @@ const Style = StyleSheet.create({
     zIndex: 1,
   },
   headerText: {
-    fontSize: 16,
-    fontWeight: '500',
+    fontSize: 18,
+    fontWeight: 'bold',
     paddingHorizontal: 24,
     color: COLORS.PRIMARY,
   },
@@ -67,5 +70,9 @@ const Style = StyleSheet.create({
     position: 'absolute',
     top: '30%',
     left: 24,
+  },
+  rightButton: {
+    position: 'absolute',
+    right: 24,
   },
 });

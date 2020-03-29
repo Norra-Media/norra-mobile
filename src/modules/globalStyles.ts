@@ -10,7 +10,7 @@ export const GlobalStyles = StyleSheet.create({
   ph24: {paddingHorizontal: 24},
   ph12: {paddingHorizontal: 12},
   mr4: {marginRight: 4},
-  backgroundColorLightGray: {backgroundColor: COLORS.VERYLIGHTGRAY},
+  backgroundColorLightGray: {backgroundColor: COLORS.VERYLIGHTGREY},
   viewPaddingWithHeader: {
     paddingTop: 60,
   },
@@ -18,6 +18,11 @@ export const GlobalStyles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 20,
+  },
+  userAvatar50x50: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
   },
   userAvatar100x100: {
     width: 100,

@@ -17,7 +17,8 @@ export class ExpressThoughts extends React.Component {
         <Image
           style={GlobalStyles.userAvatar}
           source={{
-            uri: 'https://reactnative.dev/img/tiny_logo.png',
+            uri:
+              'http://icon-library.com/images/iron-man-icon/iron-man-icon-11.jpg',
           }}
         />
         <TouchableOpacity

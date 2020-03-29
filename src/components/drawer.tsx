@@ -14,6 +14,8 @@ import WritePost from '@assets/write_post.svg';
 import AskaQuestion from '@assets/ask_a_question.svg';
 import QuestionsForYou from '@assets/questions_for_you.svg';
 import Profile from '@assets/profile.svg';
+import MyPosts from '@assets/my_posts.svg';
+import MyQuestions from '@assets/my_questions.svg';
 
 interface ILeftDrawerProps {
   open: Boolean;
@@ -123,11 +125,11 @@ export default class Drawer extends React.Component<
                 <Text style={Styles.optionText}>Ask a question</Text>
               </TouchableOpacity>
               <TouchableOpacity style={Styles.option}>
-                <WritePost height={18} width={20} />
+                <MyPosts height={18} width={20} />
                 <Text style={Styles.optionText}>My posts</Text>
               </TouchableOpacity>
               <TouchableOpacity style={Styles.option}>
-                <WritePost height={18} width={20} />
+                <MyQuestions height={18} width={20} />
                 <Text style={Styles.optionText}>Questions posted by you</Text>
               </TouchableOpacity>
               <TouchableOpacity style={Styles.option}>
@@ -203,7 +205,6 @@ const Styles = StyleSheet.create({
   optionText: {
     fontSize: 14,
     color: COLORS.PRIMARY,
-    paddingTop: 4,
     paddingLeft: 12,
   },
   termsAconditions: {

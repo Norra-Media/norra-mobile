@@ -5,9 +5,13 @@ import {COLORS} from '@modules/colors';
 import SliderImageGallery from '@components/sliderImageGallery';
 import Upvote from '@assets/upvote.svg';
 import Upvoted from '@assets/upvoted.svg';
+import Comment from '@assets/comment.svg';
 import Commented from '@assets/commented.svg';
+import Answer from '@assets/answer.svg';
 import Answered from '@assets/answered.svg';
 import Report from '@assets/report.svg';
+import BlueHeart from '@assets/blue_heart.svg';
+import RedHeart from '@assets/red_heart.svg';
 
 export class Article extends React.Component {
   renderBreadCrumb = (type: string, category: string) => {
@@ -26,7 +30,8 @@ export class Article extends React.Component {
         <Image
           style={GlobalStyles.userAvatar}
           source={{
-            uri: 'https://reactnative.dev/img/tiny_logo.png',
+            uri:
+              'http://icon-library.com/images/iron-man-icon/iron-man-icon-11.jpg',
           }}
         />
         <View style={GlobalStyles.ph12}>
@@ -59,29 +64,38 @@ export class Article extends React.Component {
     );
   };
 
-  renderActivities = (type: string) => {
+  renderActivities = (
+    type: string,
+    react: boolean = false,
+    response: boolean = false,
+  ) => {
     return (
       <View style={[GlobalStyles.rowDirection, GlobalStyles.ph12]}>
         <TouchableOpacity style={GlobalStyles.rowDirection}>
           {type === 'Post' ? (
+            response ? (
+              <RedHeart height={20} width={24} style={GlobalStyles.mr4} />
+            ) : (
+              <BlueHeart height={20} width={24} style={GlobalStyles.mr4} />
+            )
+          ) : react ? (
             <Answered height={20} width={24} style={GlobalStyles.mr4} />
           ) : (
-            <Answered height={20} width={24} style={GlobalStyles.mr4} />
+            <Answer height={20} width={24} style={GlobalStyles.mr4} />
           )}
-
           <Text>{type === 'Post' ? 'Lke' : 'Answer'}</Text>
         </TouchableOpacity>
         <TouchableOpacity style={[GlobalStyles.rowDirection, Style.comment]}>
           {type === 'Post' ? (
-            <Commented width={24} height={20} style={GlobalStyles.mr4} />
+            react ? (
+              <Commented width={24} height={20} style={GlobalStyles.mr4} />
+            ) : (
+              <Comment width={24} height={20} style={GlobalStyles.mr4} />
+            )
+          ) : response ? (
+            <Upvoted width={15} height={15} style={GlobalStyles.mr4} />
           ) : (
-            <>
-              {type === 'Upvoted' ? (
-                <Upvote width={15} height={15} style={GlobalStyles.mr4} />
-              ) : (
-                <Upvoted width={15} height={15} style={GlobalStyles.mr4} />
-              )}
-            </>
+            <Upvote width={15} height={15} style={GlobalStyles.mr4} />
           )}
           <Text>{type === 'Post' ? 'Comment' : 'Upvote'}</Text>
         </TouchableOpacity>
@@ -100,14 +114,34 @@ export class Article extends React.Component {
         {this.renderTitle()}
         {this.renderImages()}
         {this.renderDescription()}
-        {this.renderActivities('Post')}
+        {this.renderActivities('Post', true, true)}
         <View style={Style.container}>
           {this.renderBreadCrumb('Question', 'Healthy Diet')}
           {this.renderMetaData()}
           {this.renderTitle()}
-          {/* {this.renderImages()} */}
-          {/* {this.renderDescription()} */}
-          {this.renderActivities('Question')}
+          {this.renderActivities('Question', true, true)}
+        </View>
+        <View style={Style.container}>
+          {this.renderBreadCrumb('Post', 'Sports')}
+          {this.renderMetaData()}
+          {this.renderTitle()}
+          {this.renderImages()}
+          {this.renderDescription()}
+          {this.renderActivities('Post', true, false)}
+        </View>
+        <View style={Style.container}>
+          {this.renderBreadCrumb('Question', 'Healthy Diet')}
+          {this.renderMetaData()}
+          {this.renderTitle()}
+          {this.renderActivities('Question', false, false)}
+        </View>
+        <View style={Style.container}>
+          {this.renderBreadCrumb('Post', 'Sports')}
+          {this.renderMetaData()}
+          {this.renderTitle()}
+          {this.renderImages()}
+          {this.renderDescription()}
+          {this.renderActivities('Post', false, false)}
         </View>
       </View>
     );

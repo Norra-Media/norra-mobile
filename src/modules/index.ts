@@ -1,4 +1,4 @@
-export * from './navigation/mainNavigation';
+export * from './navigation';
 export * from './colors';
 export * from './globalStyles';
 export * from './constants';

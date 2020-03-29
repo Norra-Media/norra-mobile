@@ -146,6 +146,7 @@ export class Registration extends React.Component<
       <View style={GlobalStyles.container}>
         <SafeAreaView />
         <CustomHeader
+          type={'SIMPLE'}
           title={'Sign Up'}
           onLeftButtonPress={this.props.navigation.goBack}
         />
