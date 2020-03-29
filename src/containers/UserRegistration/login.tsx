@@ -18,13 +18,13 @@ import {KeyboardShift} from '@components';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {
   RootStackParamList,
-  COLORS,
   GlobalStyles,
   validateEmail,
   facebookGraphUrl,
   GOOGLE_SIGNIN_CONFIGURATIONS,
   LOGINTYPES,
 } from '@modules';
+import {COLORS} from '@modules/colors';
 
 type LoginScreenNavigationProp = StackNavigationProp<
   RootStackParamList,

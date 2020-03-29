@@ -1,7 +1,7 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {Login, Registration} from '@containers';
-import {LOGINTYPES} from './constants';
+import {LOGINTYPES} from '../constants';
 
 export type RootStackParamList = {
   Login: undefined;
@@ -35,4 +35,4 @@ const AuthenticationStackScreen = () => (
   </AuthenticationStack.Navigator>
 );
 
-export const Navigation = () => <AuthenticationStackScreen />;
+export const AuthNavigation = () => <AuthenticationStackScreen />;

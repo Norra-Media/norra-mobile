@@ -6,3 +6,5 @@ export {default as ImageInput} from './imageInput';
 export * from './imageInput';
 export {default as KeyboardShift} from './keyboardShift';
 export {default as CustomHeader} from './customHeader';
+export {default as SliderImageGallery} from './sliderImageGallery';
+export {default as Drawer} from './drawer';

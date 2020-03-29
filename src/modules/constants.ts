@@ -1,3 +1,5 @@
+import {Dimensions} from 'react-native';
+
 export const GOOGLE_SIGNIN_CONFIGURATIONS = {
   scopes: [], // what API you want to access on behalf of the user, default is email and profile
   webClientId:
@@ -16,3 +18,6 @@ export enum LOGINTYPES {
   GOOGLE,
   EMAIL,
 }
+
+export const SCREEN_WIDTH = Dimensions.get('window').width;
+export const SCREEN_HEIGHT = Dimensions.get('window').height;

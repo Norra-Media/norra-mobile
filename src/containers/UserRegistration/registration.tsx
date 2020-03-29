@@ -289,5 +289,3 @@ const Styles = StyleSheet.create({
     margin: 30,
   },
 });
-
-export default ({navigation}) => <Registration />;
