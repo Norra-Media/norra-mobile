@@ -1,14 +1,16 @@
 import React from 'react';
 import {
-  SafeAreaView,
   View,
   StyleSheet,
   ScrollView,
   Text,
   Image,
+  SafeAreaView,
+  KeyboardAvoidingView,
+  TouchableOpacity,
+  TextInput,
 } from 'react-native';
 import {
-  DateTimePicker,
   KeyboardShift,
   ImageInput,
   FloatingLabelInput,
@@ -24,8 +26,8 @@ import {
 } from '@modules';
 import {COLORS} from '@modules/colors';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {TouchableOpacity} from 'react-native-gesture-handler';
 import DownArrow from '@assets/down_arrow_grey.svg';
+import {Editor} from './editor';
 
 type NewPostScreenNavigationProp = StackNavigationProp<
   UserStackParamList,
@@ -36,7 +38,7 @@ interface Props {
 }
 
 export class NewPost extends React.Component<Props> {
-  state = {};
+  state = {metaDataHeight: 0};
 
   render() {
     return (
@@ -52,41 +54,59 @@ export class NewPost extends React.Component<Props> {
             </TouchableOpacity>
           }
         />
-        <KeyboardShift extraStyles={GlobalStyles.viewPaddingWithHeader}>
-          <ScrollView bounces={false} showsVerticalScrollIndicator={false}>
-            <View style={GlobalStyles.container}>
-              <View style={Styles.metaDataView}>
-                <View style={[GlobalStyles.rowDirection]}>
-                  <Image
-                    style={GlobalStyles.userAvatar50x50}
-                    source={{
-                      uri:
-                        'http://icon-library.com/images/iron-man-icon/iron-man-icon-11.jpg',
-                    }}
-                  />
-                  <View style={GlobalStyles.ph12}>
-                    <Text style={Styles.userName}>Abey Thomas</Text>
-                    <View style={Styles.optionContainer}>
-                      <Text style={Styles.connectionText}>in</Text>
-                      <TouchableOpacity style={Styles.dropDownButton}>
-                        <Text style={Styles.dropDownButtonText}>
-                          Healthy Diet
-                        </Text>
-                        <DownArrow height={6} width={11} />
-                      </TouchableOpacity>
-                      <Text style={Styles.connectionText}>as</Text>
-                      <TouchableOpacity style={Styles.dropDownButton}>
-                        <Text style={Styles.dropDownButtonText}>Question</Text>
-                        <DownArrow height={6} width={11} />
-                      </TouchableOpacity>
-                    </View>
-                  </View>
+        <ScrollView
+          bounces={false}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{height: '100%'}}>
+          <View
+            style={Styles.metaDataView}
+            onLayout={evt =>
+              this.setState({metaDataHeight: evt.nativeEvent.layout.height})
+            }>
+            <View style={[GlobalStyles.rowDirection]}>
+              <Image
+                style={GlobalStyles.userAvatar50x50}
+                source={{
+                  uri:
+                    'http://icon-library.com/images/iron-man-icon/iron-man-icon-11.jpg',
+                }}
+              />
+              <View style={GlobalStyles.ph12}>
+                <Text style={Styles.userName}>Abey Thomas</Text>
+                <View style={Styles.optionContainer}>
+                  <Text style={Styles.connectionText}>in</Text>
+                  <TouchableOpacity style={Styles.dropDownButton}>
+                    <Text style={Styles.dropDownButtonText}>Healthy Diet</Text>
+                    <DownArrow height={6} width={11} />
+                  </TouchableOpacity>
+                  <Text style={Styles.connectionText}>as</Text>
+                  <TouchableOpacity style={Styles.dropDownButton}>
+                    <Text style={Styles.dropDownButtonText}>Question</Text>
+                    <DownArrow height={6} width={11} />
+                  </TouchableOpacity>
                 </View>
-                <Text style={Styles.headerText}>Well what's it about...</Text>
               </View>
             </View>
-          </ScrollView>
-        </KeyboardShift>
+            <Text style={Styles.headerText}>Well what's it about...</Text>
+          </View>
+          <View style={{flex: 1}}>
+            <KeyboardAvoidingView
+              enabled
+              behavior={'padding'}
+              style={{
+                flex: 1,
+                backgroundColor: 'red',
+                height: '100%',
+              }}>
+              {/* <KeyboardShift extraStyles={{paddingTop: 120}}> */}
+              <TextInput
+                style={{borderWidth: 1, borderColor: 'blue', flex: 1}}
+                multiline
+              />
+              {/* </KeyboardShift> */}
+            </KeyboardAvoidingView>
+          </View>
+        </ScrollView>
         {/* <ImageInput
           open={imageOptions}
           onClose={() => this.toggleImageOptions(false)}
@@ -122,9 +142,7 @@ const Styles = StyleSheet.create({
     shadowOffset: {width: 0, height: 0.5 * 4},
     shadowOpacity: 0.1,
     shadowRadius: 0.8 * 4,
-    paddingTop: 20,
-    paddingHorizontal: 12,
-    paddingBottom: 12,
+    padding: 12,
   },
   userName: {
     fontSize: 14,
