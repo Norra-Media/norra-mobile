@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">norra_mobile</string>
+    <string name="facebook_app_id">826890284452863</string>
+    <string name="fb_login_protocol_scheme">fb826890284452863</string>
 </resources>
